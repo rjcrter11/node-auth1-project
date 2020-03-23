@@ -14,8 +14,9 @@ router.post("/register", (req, res) => {
   userInfo.password = hash;
 
   Users.add(userInfo)
-    .then((user) => {
-      res.status(200).json(user);
+    .then((newUser) => {
+      req.session.user = newUser; // Add here as well to save session on register
+      res.status(200).json(newUser);
     })
     .catch((err) => {
       res.status(500).json({ message: "Error adding user" });
@@ -30,6 +31,12 @@ router.post("/login", (req, res) => {
   Users.findBy({ username })
     .then(([user]) => {
       if (user && bcrypt.compareSync(password, user.password)) {
+        req.session.user = {
+          id: user.id,
+          username: user.username
+        };
+        // --- req.session.user = user;
+        // sends the same thing as the one above, but doesn't send it along w/ session data to console logs
         res.status(200).json({ Welcome: user.username });
       } else {
         res.status(401).json({ message: "Invalid credentials" });
@@ -38,6 +45,22 @@ router.post("/login", (req, res) => {
     .catch((err) => {
       res.status(500).json({ message: "Error finding user", err });
     });
+});
+
+// --- Logout --- //
+
+router.get("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        res.status(500).json({ message: "you aint do it right" });
+      } else {
+        res.status(200).json({ message: "successfully logged out" });
+      }
+    });
+  } else {
+    res.status(200).json({ message: "you already logged out fool" });
+  }
 });
 
 module.exports = router;
