@@ -32,6 +32,7 @@ const sessionConfig = {
 };
 
 server.use(express.json());
+server.use(cors());
 server.use(helmet());
 server.use(session(sessionConfig));
 
