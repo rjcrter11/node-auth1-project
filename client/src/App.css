@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5% 1.5%;
+  background-color: indigo;
+}
+
+.links-container {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.links-container a {
+  color: white;
+  text-decoration: none;
+}
+.logo-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 20%;
+  color: white;
+  font-size: 2rem;
+}
+
+.homepage-container {
+  margin-top: 4%;
+}
+.homepage-container h2,
+h3 {
+  text-align: center;
+}

@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.errors {
+  color: red;
+  font-size: 0.5rem;
+}
+
+.login-container {
+  margin-top: 4%;
+  width: 30%;
+  margin: 4% auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 1px 1px 1px gray;
+  padding: 2% 0;
+}
+
+.login-box {
+  margin-top: 6%;
+  justify-self: flex-start;
+}
+
+.login-box a {
+  font-size: 0.75rem;
+  text-decoration: none;
+}
